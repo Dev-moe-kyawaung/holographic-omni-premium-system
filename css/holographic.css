@@ -1,0 +1,600 @@
+/* ==========================================================================
+   HOLOGRAPHIC EFFECTS - Iridescence, Glassmorphism, Volumetric
+   ========================================================================== */
+
+/* --- Iridescent Border Animation --- */
+@keyframes ho-iridescence-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ho-iridescent-border {
+  position: relative;
+  background: var(--ho-glass-1) padding-box,
+              linear-gradient(135deg, #00ffff, #00ff88, #ffd700, #ff6b00, #ff00aa, #bc00ff, #0088ff, #00ffff) border-box;
+  background-size: 400% 400%;
+  border: 1px solid transparent;
+  animation: ho-iridescence-shift var(--ho-iridescence-speed) linear infinite;
+}
+
+.ho-iridescent-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity var(--ho-dur-smooth) var(--ho-ease-expo-out);
+  z-index: -1;
+}
+
+.ho-iridescent-border:hover::before {
+  opacity: var(--ho-iridescence-intensity);
+}
+
+/* --- Glassmorphism Layers --- */
+.ho-glass {
+  background: var(--ho-glass-2);
+  backdrop-filter: var(--ho-glass-blur) var(--ho-glass-sat);
+  -webkit-backdrop-filter: var(--ho-glass-blur) var(--ho-glass-sat);
+  border: 1px solid var(--ho-glass-border-2);
+}
+
+.ho-glass-lg {
+  background: var(--ho-glass-3);
+  backdrop-filter: var(--ho-glass-blur-lg) var(--ho-glass-sat);
+  -webkit-backdrop-filter: var(--ho-glass-blur-lg) var(--ho-glass-sat);
+  border: 1px solid var(--ho-glass-border-3);
+}
+
+.ho-glass-xl {
+  background: var(--ho-glass-4);
+  backdrop-filter: var(--ho-glass-blur-xl) var(--ho-glass-sat) var(--ho-glass-bright);
+  -webkit-backdrop-filter: var(--ho-glass-blur-xl) var(--ho-glass-sat) var(--ho-glass-bright);
+  border: 1px solid var(--ho-glass-border-4);
+}
+
+/* --- Holographic Text --- */
+.ho-text-holographic {
+  background: var(--ho-grad-prism);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ho-iridescence-shift var(--ho-iridescence-speed) linear infinite;
+}
+
+.ho-text-volumetric {
+  color: transparent;
+  background: var(--ho-grad-hologram);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4))
+          drop-shadow(0 0 16px rgba(188, 0, 255, 0.3))
+          drop-shadow(0 0 32px rgba(255, 215, 0, 0.2));
+}
+
+/* --- Volumetric Light Shafts --- */
+.ho-light-shaft {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--ho-z-space);
+}
+
+.ho-light-shaft::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  height: 200%;
+  background: var(--ho-light-shaft-cyan);
+  opacity: 0.3;
+  animation: ho-shaft-pulse 4s ease-in-out infinite;
+}
+
+.ho-light-shaft--violet::before {
+  background: var(--ho-light-shaft-violet);
+}
+
+.ho-light-shaft--gold::before {
+  background: var(--ho-light-shaft-gold);
+}
+
+@keyframes ho-shaft-pulse {
+  0%, 100% { opacity: 0.2; transform: translateX(-50%) scaleY(1); }
+  50% { opacity: 0.4; transform: translateX(-50%) scaleY(1.2); }
+}
+
+/* --- Holographic Card Component --- */
+.ho-card {
+  position: relative;
+  border-radius: var(--ho-radius-xl);
+  padding: var(--ho-space-6);
+  transition: 
+    transform var(--ho-dur-smooth) var(--ho-ease-cubic-out),
+    box-shadow var(--ho-dur-smooth) var(--ho-ease-cubic-out),
+    border-color var(--ho-dur-base) var(--ho-ease-expo-out);
+}
+
+.ho-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--ho-grad-hologram);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity var(--ho-dur-smooth) var(--ho-ease-expo-out);
+}
+
+.ho-card:hover::before {
+  opacity: 0.15;
+}
+
+.ho-card--holographic {
+  background: var(--ho-glass-2);
+  border: 1px solid var(--ho-glass-border-2);
+  backdrop-filter: var(--ho-glass-blur) var(--ho-glass-sat);
+  box-shadow: 
+    var(--ho-shadow-md),
+    var(--ho-inset-glow);
+}
+
+.ho-card--holographic:hover {
+  transform: translateY(-8px) translateZ(var(--ho-space-4));
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 
+    var(--ho-shadow-xl),
+    var(--ho-glow-soft-cyan),
+    var(--ho-inset-glow);
+}
+
+.ho-card--volumetric {
+  background: var(--ho-glass-3);
+  border: 1px solid var(--ho-glass-border-3);
+  border-radius: var(--ho-radius-organic-2);
+  backdrop-filter: var(--ho-glass-blur-lg) var(--ho-glass-sat);
+  box-shadow: 
+    var(--ho-shadow-lg),
+    0 0 60px rgba(0, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.ho-card--volumetric:hover {
+  transform: translateY(-12px) translateZ(var(--ho-space-8)) rotateX(2deg);
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 
+    var(--ho-shadow-2xl),
+    0 0 100px rgba(0, 255, 255, 0.2),
+    0 0 200px rgba(188, 0, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* --- Omni-Sphere Component --- */
+.ho-omni-sphere {
+  position: relative;
+  width: var(--ho-sphere-radius-base);
+  height: var(--ho-sphere-radius-base);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: ho-sphere-float var(--ho-dur-orbital) ease-in-out infinite;
+}
+
+.ho-omni-sphere__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(ellipse at 30% 30%, rgba(0, 255, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(188, 0, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 60%),
+    var(--ho-void-900);
+  box-shadow: 
+    inset 0 0 60px rgba(0, 255, 255, 0.2),
+    inset 0 0 120px rgba(188, 0, 255, 0.1),
+    0 0 80px rgba(0, 255, 255, var(--ho-sphere-glow-intensity)),
+    0 0 160px rgba(188, 0, 255, calc(var(--ho-sphere-glow-intensity) * 0.5));
+  filter: blur(1px);
+}
+
+.ho-omni-sphere__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #00ffff, #00ff88, #ffd700, #ff00aa, #bc00ff, #0088ff) border-box;
+  background-size: 200% 200%;
+  animation: 
+    ho-ring-rotate 20s linear infinite,
+    ho-iridescence-shift var(--ho-iridescence-speed) linear infinite;
+  opacity: 0.6;
+}
+
+.ho-omni-sphere__ring:nth-child(1) { inset: -10%; animation-delay: 0s, 0s; }
+.ho-omni-sphere__ring:nth-child(2) { inset: -20%; animation-delay: -5s, -1s; }
+.ho-omni-sphere__ring:nth-child(3) { inset: -30%; animation-delay: -10s, -2s; }
+.ho-omni-sphere__ring:nth-child(4) { inset: -40%; animation-delay: -15s, -3s; }
+
+@keyframes ho-sphere-float {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  25% { transform: translateY(-10px) rotateX(2deg) rotateY(5deg); }
+  50% { transform: translateY(0) rotateX(0deg) rotateY(10deg); }
+  75% { transform: translateY(10px) rotateX(-2deg) rotateY(5deg); }
+}
+
+@keyframes ho-ring-rotate {
+  from { transform: rotateZ(0deg) rotateX(60deg) rotateY(30deg); }
+  to { transform: rotateZ(360deg) rotateX(60deg) rotateY(30deg); }
+}
+
+/* --- Particle Field Canvas --- */
+.ho-particle-field {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ho-z-space);
+  pointer-events: none;
+}
+
+/* --- Magnetic Button --- */
+.ho-btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ho-space-3);
+  padding: var(--ho-space-4) var(--ho-space-8);
+  font-family: var(--ho-font-ui);
+  font-size: var(--ho-text-sm);
+  font-weight: var(--ho-weight-semibold);
+  letter-spacing: var(--ho-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ho-void-950);
+  background: var(--ho-grad-prism);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: var(--ho-radius-lg);
+  cursor: pointer;
+  overflow: hidden;
+  transition: 
+    transform var(--ho-dur-fast) var(--ho-ease-back-out),
+    box-shadow var(--ho-dur-fast) var(--ho-ease-expo-out);
+}
+
+.ho-btn-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  background-position: 100% 100%;
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity var(--ho-dur-base) var(--ho-ease-expo-out);
+  z-index: -1;
+}
+
+.ho-btn-magnetic:hover::before {
+  opacity: 0.6;
+}
+
+.ho-btn-magnetic:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--ho-glow-cyan);
+}
+
+.ho-btn-magnetic:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.ho-btn-magnetic:focus-visible {
+  outline: none;
+  box-shadow: var(--ho-focus-ring), var(--ho-glow-cyan);
+}
+
+/* --- Portal Transition Overlay --- */
+.ho-portal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ho-z-portal);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ho-dur-base) var(--ho-ease-expo-out);
+}
+
+.ho-portal--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ho-portal__layer {
+  position: absolute;
+  inset: 0;
+  background: var(--ho-void-950);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.ho-portal__layer:nth-child(1) { background: var(--ho-void-950); }
+.ho-portal__layer:nth-child(2) { background: #00ffff; animation-delay: 40ms; }
+.ho-portal__layer:nth-child(3) { background: #bc00ff; animation-delay: 80ms; }
+.ho-portal__layer:nth-child(4) { background: #ffd700; animation-delay: 120ms; }
+
+.ho-portal--active .ho-portal__layer {
+  animation: ho-portal-wipe 0.8s var(--ho-ease-expo-in-out) forwards;
+}
+
+.ho-portal--exit .ho-portal__layer {
+  animation: ho-portal-unwipe 0.8s var(--ho-ease-expo-in-out) forwards;
+  transform-origin: bottom;
+}
+
+@keyframes ho-portal-wipe {
+  to { transform: scaleY(1); transform-origin: top; }
+}
+
+@keyframes ho-portal-unwipe {
+  from { transform: scaleY(1); transform-origin: top; }
+  to { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* --- Spatial Cursor --- */
+.ho-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--ho-z-cursor);
+  transform: translate(-50%, -50%);
+  transition: 
+    width var(--ho-dur-fast) var(--ho-ease-expo-out),
+    height var(--ho-dur-fast) var(--ho-ease-expo-out),
+    border-color var(--ho-dur-base) var(--ho-ease-expo-out),
+    background var(--ho-dur-base) var(--ho-ease-expo-out);
+  mix-blend-mode: difference;
+}
+
+.ho-cursor__outer {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #00ffff;
+  border-radius: 50%;
+  animation: ho-cursor-pulse 2s ease-in-out infinite;
+}
+
+.ho-cursor__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #00ffff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ho-cursor--magnetic .ho-cursor__outer {
+  width: 64px;
+  height: 64px;
+  border-color: #ffd700;
+  animation: none;
+}
+
+.ho-cursor--magnetic .ho-cursor__inner {
+  background: #ffd700;
+  width: 16px;
+  height: 16px;
+}
+
+.ho-cursor--click .ho-cursor__outer {
+  animation: ho-cursor-click 0.3s var(--ho-ease-back-out);
+}
+
+@keyframes ho-cursor-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 0.3; }
+}
+
+@keyframes ho-cursor-click {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+/* --- Parallax Layers --- */
+.ho-parallax-layer {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.ho-parallax-layer--depth-1 { --ho-parallax-factor: 0.05; }
+.ho-parallax-layer--depth-2 { --ho-parallax-factor: 0.15; }
+.ho-parallax-layer--depth-3 { --ho-parallax-factor: 0.3; }
+.ho-parallax-layer--depth-4 { --ho-parallax-factor: 0.5; }
+.ho-parallax-layer--depth-5 { --ho-parallax-factor: 0.8; }
+
+/* --- Scroll Progress Indicator --- */
+.ho-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--ho-grad-prism);
+  background-size: 200% 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: var(--ho-z-nav);
+  pointer-events: none;
+  animation: ho-iridescence-shift 4s linear infinite;
+}
+
+/* --- Data Grid --- */
+.ho-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ho-gap-md);
+}
+
+.ho-data-grid__item {
+  position: relative;
+  padding: var(--ho-space-6);
+  border-radius: var(--ho-radius-lg);
+  background: var(--ho-glass-2);
+  border: 1px solid var(--ho-glass-border-2);
+  backdrop-filter: var(--ho-glass-blur) var(--ho-glass-sat);
+  transition: all var(--ho-dur-smooth) var(--ho-ease-cubic-out);
+}
+
+.ho-data-grid__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--ho-grad-hologram);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--ho-dur-smooth);
+}
+
+.ho-data-grid__item:hover::before {
+  opacity: 0.1;
+}
+
+.ho-data-grid__item:hover {
+  transform: translateY(-4px) translateZ(var(--ho-space-2));
+  border-color: rgba(0, 255, 255, 0.3);
+  box-shadow: var(--ho-shadow-lg), var(--ho-glow-soft-cyan);
+}
+
+/* --- Navigation 3D --- */
+.ho-nav-3d {
+  position: fixed;
+  top: var(--ho-space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--ho-z-nav);
+  display: flex;
+  align-items: center;
+  gap: var(--ho-space-2);
+  padding: var(--ho-space-3) var(--ho-space-4);
+  border-radius: var(--ho-radius-full);
+  background: var(--ho-glass-3);
+  border: 1px solid var(--ho-glass-border-3);
+  backdrop-filter: var(--ho-glass-blur-lg) var(--ho-glass-sat);
+  box-shadow: var(--ho-shadow-lg), var(--ho-glow-soft-violet);
+}
+
+.ho-nav-3d__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ho-space-2);
+  padding: var(--ho-space-2) var(--ho-space-4);
+  font-family: var(--ho-font-ui);
+  font-size: var(--ho-text-sm);
+  font-weight: var(--ho-weight-medium);
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: var(--ho-radius-md);
+  transition: all var(--ho-dur-base) var(--ho-ease-cubic-out);
+}
+
+.ho-nav-3d__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--ho-grad-prism);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--ho-dur-base), transform var(--ho-dur-base) var(--ho-ease-back-out);
+  z-index: -1;
+}
+
+.ho-nav-3d__item:hover,
+.ho-nav-3d__item[aria-current="page"] {
+  color: #ffffff;
+}
+
+.ho-nav-3d__item:hover::before,
+.ho-nav-3d__item[aria-current="page"]::before {
+  opacity: 0.2;
+  transform: scale(1);
+}
+
+.ho-nav-3d__item[aria-current="page"] {
+  font-weight: var(--ho-weight-semibold);
+}
+
+/* --- Floating Label Input --- */
+.ho-field {
+  position: relative;
+  width: 100%;
+}
+
+.ho-field__input {
+  width: 100%;
+  padding: var(--ho-space-4) var(--ho-space-5);
+  font-family: var(--ho-font-ui);
+  font-size: var(--ho-text-base);
+  color: #ffffff;
+  background: var(--ho-glass-1);
+  border: 1px solid var(--ho-glass-border-1);
+  border-radius: var(--ho-radius-lg);
+  backdrop-filter: var(--ho-glass-blur);
+  transition: all var(--ho-dur-base) var(--ho-ease-expo-out);
+}
+
+.ho-field__input::placeholder {
+  color: transparent;
+}
+
+.ho-field__input:focus,
+.ho-field__input:not(:placeholder-shown) {
+  background: var(--ho-glass-2);
+  border-color: var(--ho-glass-border-3);
+  box-shadow: var(--ho-glow-soft-cyan);
+}
+
+.ho-field__label {
+  position: absolute;
+  left: var(--ho-space-5);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--ho-font-ui);
+  font-size: var(--ho-text-base);
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  transition: all var(--ho-dur-base) var(--ho-ease-expo-out);
+  transform-origin: left center;
+}
+
+.ho-field__input:focus + .ho-field__label,
+.ho-field__input:not(:placeholder-shown) + .ho-field__label {
+  top: var(--ho-space-3);
+  font-size: var(--ho-text-xs);
+  color: #00ffff;
+  transform: translateY(0) scale(0.85);
+}
+
+.ho-field__underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--ho-grad-prism);
+  transform: translateX(-50%);
+  transition: width var(--ho-dur-smooth) var(--ho-ease-expo-out);
+}
+
+.ho-field__input:focus ~ .ho-field__underline {
+  width: 100%;
+}
