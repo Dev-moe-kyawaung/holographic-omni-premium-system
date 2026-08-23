@@ -1,0 +1,441 @@
+/* ==========================================================================
+   HOLOGRAPHIC-OMNI PREMIUM DESIGN SYSTEM - CORE TOKENS
+   ========================================================================== */
+
+:root {
+  /* ========================================================================
+     HOLOGRAPHIC COLOR SPACE - Spectral Iridescence Palette
+     ======================================================================== */
+  
+  /* Base Quantum Void */
+  --ho-void-950:  #020208;
+  --ho-void-900:  #050512;
+  --ho-void-850:  #0a0a1e;
+  --ho-void-800:  #0f0f2a;
+  --ho-void-700:  #1a1a3e;
+  --ho-void-600:  #252552;
+  --ho-void-500:  #303066;
+  
+  /* Spectral Prisms - Primary Holographic Hues */
+  --ho-prism-cyan:      #00ffff;
+  --ho-prism-aqua:      #00e5e5;
+  --ho-prism-teal:      #00cccc;
+  --ho-prism-emerald:   #00ff88;
+  --ho-prism-lime:      #aaff00;
+  --ho-prism-gold:      #ffd700;
+  --ho-prism-amber:     #ffaa00;
+  --ho-prism-orange:    #ff6b00;
+  --ho-prism-coral:     #ff3366;
+  --ho-prism-magenta:   #ff00aa;
+  --ho-prism-violet:    #bc00ff;
+  --ho-prism-purple:    #8800ff;
+  --ho-prism-indigo:    #4400ff;
+  --ho-prism-blue:      #0088ff;
+  --ho-prism-sky:       #00ccff;
+  
+  /* Iridescent Shift Variables (for dynamic color rotation) */
+  --ho-iridescence-hue: 180;
+  --ho-iridescence-sat: 100%;
+  --ho-iridescence-lit: 50%;
+  --ho-iridescence-shift: 0deg;
+  
+  /* Glassmorphism Layers */
+  --ho-glass-1: rgba(255, 255, 255, 0.03);
+  --ho-glass-2: rgba(255, 255, 255, 0.05);
+  --ho-glass-3: rgba(255, 255, 255, 0.08);
+  --ho-glass-4: rgba(255, 255, 255, 0.12);
+  --ho-glass-5: rgba(255, 255, 255, 0.18);
+  
+  --ho-glass-border-1: rgba(255, 255, 255, 0.06);
+  --ho-glass-border-2: rgba(255, 255, 255, 0.12);
+  --ho-glass-border-3: rgba(255, 255, 255, 0.2);
+  --ho-glass-border-4: rgba(255, 255, 255, 0.3);
+  
+  /* Holographic Gradients - Multi-stop Spectral */
+  --ho-grad-prism: conic-gradient(
+    from 0deg at 50% 50%,
+    #00ffff 0deg,
+    #00ff88 60deg,
+    #ffd700 120deg,
+    #ff6b00 180deg,
+    #ff00aa 240deg,
+    #bc00ff 300deg,
+    #0088ff 360deg
+  );
+  
+  --ho-grad-radial-prism: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 255, 255, 0.15) 25%,
+    rgba(188, 0, 255, 0.1) 50%,
+    rgba(255, 215, 0, 0.08) 75%,
+    transparent 100%
+  );
+  
+  --ho-grad-void: linear-gradient(
+    180deg,
+    var(--ho-void-950) 0%,
+    var(--ho-void-900) 30%,
+    var(--ho-void-850) 60%,
+    var(--ho-void-900) 100%
+  );
+  
+  --ho-grad-hologram: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.2) 0%,
+    rgba(0, 255, 136, 0.15) 20%,
+    rgba(255, 215, 0, 0.1) 40%,
+    rgba(255, 107, 0, 0.08) 60%,
+    rgba(255, 0, 170, 0.12) 80%,
+    rgba(188, 0, 255, 0.15) 100%
+  );
+  
+  /* Volumetric Light Shafts */
+  --ho-light-shaft-cyan: 
+    radial-gradient(ellipse at top, rgba(0, 255, 255, 0.15) 0%, transparent 50%);
+  --ho-light-shaft-violet: 
+    radial-gradient(ellipse at bottom, rgba(188, 0, 255, 0.1) 0%, transparent 50%);
+  --ho-light-shaft-gold: 
+    radial-gradient(ellipse at center, rgba(255, 215, 0, 0.08) 0%, transparent 40%);
+  
+  /* ========================================================================
+     TYPOGRAPHY - Spatial Type System
+     ======================================================================== */
+  
+  --ho-font-display: 'Syne', 'Space Grotesk', sans-serif;
+  --ho-font-ui: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  --ho-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --ho-font-data: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  
+  /* Fluid Type Scale - Perfect Fifth (1.5) with viewport scaling */
+  --ho-text-micro:  clamp(0.625rem, 0.6rem + 0.125vw, 0.7rem);
+  --ho-text-xs:     clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --ho-text-sm:     clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --ho-text-base:   clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --ho-text-lg:     clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --ho-text-xl:     clamp(1.375rem, 1.2rem + 0.875vw, 1.625rem);
+  --ho-text-2xl:    clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);
+  --ho-text-3xl:    clamp(2.25rem, 1.875rem + 1.875vw, 3rem);
+  --ho-text-4xl:    clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  --ho-text-5xl:    clamp(4rem, 3.25rem + 3.75vw, 5.5rem);
+  --ho-text-6xl:    clamp(5.5rem, 4.5rem + 5vw, 7.5rem);
+  --ho-text-7xl:    clamp(7rem, 5.5rem + 7.5vw, 10rem);
+  
+  /* Line Heights - Golden Ratio Based */
+  --ho-leading-none:   1;
+  --ho-leading-tight:  1.1;
+  --ho-leading-snug:   1.375;
+  --ho-leading-normal: 1.618;
+  --ho-leading-relaxed: 1.75;
+  --ho-leading-loose:  2;
+  
+  /* Font Weights */
+  --ho-weight-thin:      100;
+  --ho-weight-extralight: 200;
+  --ho-weight-light:     300;
+  --ho-weight-normal:    400;
+  --ho-weight-medium:    500;
+  --ho-weight-semibold:  600;
+  --ho-weight-bold:      700;
+  --ho-weight-extrabold: 800;
+  --ho-weight-black:     900;
+  
+  /* Letter Spacing */
+  --ho-tracking-tighter: -0.05em;
+  --ho-tracking-tight:   -0.025em;
+  --ho-tracking-normal:  0;
+  --ho-tracking-wide:    0.025em;
+  --ho-tracking-wider:   0.05em;
+  --ho-tracking-widest:  0.1em;
+  --ho-tracking-ultra:   0.2em;
+  
+  /* ========================================================================
+     SPATIAL SPACING - 4D Grid (x, y, z, time)
+     ======================================================================== */
+  
+  /* Base Unit: 4px */
+  --ho-space-0:   0;
+  --ho-space-1:   0.25rem;   /* 4px */
+  --ho-space-2:   0.5rem;    /* 8px */
+  --ho-space-3:   0.75rem;   /* 12px */
+  --ho-space-4:   1rem;      /* 16px */
+  --ho-space-5:   1.25rem;   /* 20px */
+  --ho-space-6:   1.5rem;    /* 24px */
+  --ho-space-7:   1.75rem;   /* 28px */
+  --ho-space-8:   2rem;      /* 32px */
+  --ho-space-10:  2.5rem;    /* 40px */
+  --ho-space-12:  3rem;      /* 48px */
+  --ho-space-14:  3.5rem;    /* 56px */
+  --ho-space-16:  4rem;      /* 64px */
+  --ho-space-20:  5rem;      /* 80px */
+  --ho-space-24:  6rem;      /* 96px */
+  --ho-space-28:  7rem;      /* 112px */
+  --ho-space-32:  8rem;      /* 128px */
+  --ho-space-36:  9rem;      /* 144px */
+  --ho-space-40:  10rem;     /* 160px */
+  --ho-space-48:  12rem;     /* 192px */
+  --ho-space-56:  14rem;     /* 224px */
+  --ho-space-64:  16rem;     /* 256px */
+  
+  /* Golden Ratio Spacing (φ = 1.618) */
+  --ho-space-phi-1:  1.618rem;
+  --ho-space-phi-2:  2.618rem;
+  --ho-space-phi-3:  4.236rem;
+  --ho-space-phi-4:  6.854rem;
+  --ho-space-phi-5:  11.09rem;
+  --ho-space-phi-6:  17.944rem;
+  
+  /* Z-Space Depth Layers */
+  --ho-depth-0:  0;
+  --ho-depth-1:  calc(var(--ho-space-1) * -1);
+  --ho-depth-2:  calc(var(--ho-space-2) * -1);
+  --ho-depth-3:  calc(var(--ho-space-4) * -1);
+  --ho-depth-4:  calc(var(--ho-space-8) * -1);
+  --ho-depth-5:  calc(var(--ho-space-16) * -1);
+  
+  /* ========================================================================
+     RESPONSIVE GRID - 12/16/24 Column Fluid System
+     ======================================================================== */
+  
+  --ho-grid-columns: 12;
+  --ho-grid-columns-lg: 16;
+  --ho-grid-columns-xl: 24;
+  
+  --ho-gap-xs: var(--ho-space-3);
+  --ho-gap-sm: var(--ho-space-4);
+  --ho-gap-md: var(--ho-space-6);
+  --ho-gap-lg: var(--ho-space-8);
+  --ho-gap-xl: var(--ho-space-12);
+  --ho-gap-2xl: var(--ho-space-16);
+  
+  --ho-container-max: 1600px;
+  --ho-container-padding: var(--ho-space-6);
+  --ho-container-padding-lg: var(--ho-space-10);
+  --ho-container-padding-xl: var(--ho-space-16);
+  
+  /* Breakpoints */
+  --ho-bp-xs:  360px;
+  --ho-bp-sm:  540px;
+  --ho-bp-md:  768px;
+  --ho-bp-lg:  1024px;
+  --ho-bp-xl:  1280px;
+  --ho-bp-2xl: 1536px;
+  --ho-bp-3xl: 1920px;
+  
+  /* ========================================================================
+     BORDER RADIUS - Organic Geometry
+     ======================================================================== */
+  
+  --ho-radius-none:   0;
+  --ho-radius-micro:  2px;
+  --ho-radius-xs:     4px;
+  --ho-radius-sm:     8px;
+  --ho-radius-md:     12px;
+  --ho-radius-lg:     16px;
+  --ho-radius-xl:     24px;
+  --ho-radius-2xl:    32px;
+  --ho-radius-3xl:    48px;
+  --ho-radius-full:   9999px;
+  
+  /* Organic/Holographic Shapes */
+  --ho-radius-organic-1:  24px 16px 24px 16px / 16px 24px 16px 24px;
+  --ho-radius-organic-2:  32px 20px 32px 20px / 20px 32px 20px 32px;
+  --ho-radius-organic-3:  48px 24px 48px 24px / 24px 48px 24px 48px;
+  --ho-radius-hexagon:    polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  --ho-radius-octagon:    polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  
+  /* ========================================================================
+     MOTION PHYSICS - Spring & Orbital Dynamics
+     ======================================================================== */
+  
+  /* Easing Curves - Cubic-Bezier Physics */
+  --ho-ease-linear:       linear;
+  --ho-ease-sine-in:      cubic-bezier(0.47, 0, 0.745, 0.715);
+  --ho-ease-sine-out:     cubic-bezier(0.39, 0.575, 0.565, 1);
+  --ho-ease-sine-in-out:  cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --ho-ease-quad-in:      cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ho-ease-quad-out:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ho-ease-quad-in-out:  cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ho-ease-cubic-in:     cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ho-ease-cubic-out:    cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ho-ease-cubic-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ho-ease-quart-in:     cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ho-ease-quart-out:    cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ho-ease-quart-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ho-ease-quint-in:     cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --ho-ease-quint-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ho-ease-quint-in-out: cubic-bezier(0.86, 0, 0.07, 1);
+  --ho-ease-expo-in:      cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ho-ease-expo-out:     cubic-bezier(0.19, 1, 0.22, 1);
+  --ho-ease-expo-in-out:  cubic-bezier(1, 0, 0, 1);
+  --ho-ease-circ-in:      cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --ho-ease-circ-out:     cubic-bezier(0.075, 0.82, 0.165, 1);
+  --ho-ease-circ-in-out:  cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --ho-ease-back-in:      cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --ho-ease-back-out:     cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ho-ease-back-in-out:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Spring Presets (for GSAP) */
+  --ho-spring-gentle:     { stiffness: 120, damping: 14 };
+  --ho-spring-smooth:     { stiffness: 180, damping: 16 };
+  --ho-spring-bouncy:     { stiffness: 280, damping: 12 };
+  --ho-spring-stiff:      { stiffness: 400, damping: 20 };
+  --ho-spring-orbital:    { stiffness: 200, damping: 10, mass: 1.5 };
+  
+  /* Duration Scale */
+  --ho-dur-instant:   0ms;
+  --ho-dur-micro:     50ms;
+  --ho-dur-fast:      150ms;
+  --ho-dur-base:      300ms;
+  --ho-dur-smooth:    500ms;
+  --ho-dur-slow:      800ms;
+  --ho-dur-slower:    1200ms;
+  --ho-dur-ambient:   2000ms;
+  --ho-dur-orbital:   4000ms;
+  --ho-dur-infinite:  20000ms;
+  
+  /* Stagger Delays */
+  --ho-stagger-micro: 0.015s;
+  --ho-stagger-tight: 0.03s;
+  --ho-stagger-base:  0.06s;
+  --ho-stagger-loose: 0.1s;
+  --ho-stagger-wide:  0.15s;
+  
+  /* ========================================================================
+     Z-INDEX - Dimensional Layers
+     ======================================================================== */
+  
+  --ho-z-void:       -100;  /* Deep background */
+  --ho-z-space:      -50;   /* Particle fields */
+  --ho-z-hologram:   -10;   /* 3D holograms */
+  --ho-z-base:       0;     /* Content base */
+  --ho-z-content:    10;    /* Main content */
+  --ho-z-ui:         100;   /* UI elements */
+  --ho-z-nav:        200;   /* Navigation */
+  --ho-z-modal:      300;   /* Modals */
+  --ho-z-portal:     400;   /* Page transitions */
+  --ho-z-cursor:     500;   /* Custom cursor */
+  --ho-z-debug:      1000;  /* Debug overlays */
+  
+  /* ========================================================================
+     SHADOWS & GLOWS - Volumetric Lighting
+     ======================================================================== */
+  
+  /* Elevation Shadows */
+  --ho-shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --ho-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.5);
+  --ho-shadow-md:  0 8px 24px rgba(0, 0, 0, 0.55);
+  --ho-shadow-lg:  0 16px 48px rgba(0, 0, 0, 0.6);
+  --ho-shadow-xl:  0 32px 96px rgba(0, 0, 0, 0.65);
+  --ho-shadow-2xl: 0 64px 192px rgba(0, 0, 0, 0.7);
+  
+  /* Holographic Glows - Multi-layer */
+  --ho-glow-cyan:     0 0 8px  #00ffff, 0 0 16px  #00ffff, 0 0 32px  #00ffff, 0 0 64px  #00ffff;
+  --ho-glow-emerald:  0 0 8px  #00ff88, 0 0 16px  #00ff88, 0 0 32px  #00ff88, 0 0 64px  #00ff88;
+  --ho-glow-gold:     0 0 8px  #ffd700, 0 0 16px  #ffd700, 0 0 32px  #ffd700, 0 0 64px  #ffd700;
+  --ho-glow-magenta:  0 0 8px  #ff00aa, 0 0 16px  #ff00aa, 0 0 32px  #ff00aa, 0 0 64px  #ff00aa;
+  --ho-glow-violet:   0 0 8px  #bc00ff, 0 0 16px  #bc00ff, 0 0 32px  #bc00ff, 0 0 64px  #bc00ff;
+  --ho-glow-blue:     0 0 8px  #0088ff, 0 0 16px  #0088ff, 0 0 32px  #0088ff, 0 0 64px  #0088ff;
+  --ho-glow-white:    0 0 8px  #ffffff, 0 0 16px  #ffffff, 0 0 32px  #ffffff, 0 0 64px  #ffffff;
+  
+  /* Soft Glows */
+  --ho-glow-soft-cyan:    0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.15);
+  --ho-glow-soft-violet:  0 0 20px rgba(188, 0, 255, 0.3), 0 0 40px rgba(188, 0, 255, 0.15);
+  --ho-glow-soft-gold:    0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.15);
+  
+  /* Inset Glows */
+  --ho-inset-glow: inset 0 0 20px rgba(255, 255, 255, 0.05), inset 0 0 40px rgba(0, 255, 255, 0.03);
+  
+  /* ========================================================================
+     HOLOGRAPHIC MATERIAL PROPERTIES
+     ======================================================================== */
+  
+  /* Glassmorphism */
+  --ho-glass-blur:      blur(20px);
+  --ho-glass-blur-lg:   blur(40px);
+  --ho-glass-blur-xl:   blur(80px);
+  --ho-glass-sat:       saturate(180%);
+  --ho-glass-bright:    brightness(1.1);
+  
+  /* Iridescence */
+  --ho-iridescence-speed: 8s;
+  --ho-iridescence-intensity: 0.6;
+  --ho-iridescence-angle: 45deg;
+  
+  /* Volumetric */
+  --ho-volume-steps: 32;
+  --ho-volume-density: 0.15;
+  --ho-volume-scatter: 0.8;
+  
+  /* ========================================================================
+     PARTICLE FIELD CONFIGURATION
+     ======================================================================== */
+  
+  --ho-particle-count-xs:  500;
+  --ho-particle-count-sm:  1500;
+  --ho-particle-count-md:  5000;
+  --ho-particle-count-lg:  15000;
+  --ho-particle-count-xl:  50000;
+  --ho-particle-count-2xl: 100000;
+  
+  --ho-particle-size-min: 0.5;
+  --ho-particle-size-max: 4;
+  --ho-particle-life-min: 2;
+  --ho-particle-life-max: 10;
+  --ho-particle-speed: 0.5;
+  
+  /* ========================================================================
+     OMNI-SPHERE CONFIGURATION
+     ======================================================================== */
+  
+  --ho-sphere-radius-base: 120px;
+  --ho-sphere-radius-lg:   200px;
+  --ho-sphere-radius-xl:   300px;
+  --ho-sphere-segments: 64;
+  --ho-sphere-rings: 8;
+  --ho-sphere-rotation-x: 0.0003;
+  --ho-sphere-rotation-y: 0.0005;
+  --ho-sphere-rotation-z: 0.0002;
+  --ho-sphere-glow-intensity: 0.4;
+  
+  /* ========================================================================
+     REDUCED MOTION & ACCESSIBILITY
+     ======================================================================== */
+  
+  --ho-reduced-motion: 0;
+  --ho-high-contrast: 0;
+  
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --ho-reduced-motion: 1;
+      --ho-dur-fast: 0ms;
+      --ho-dur-base: 0ms;
+      --ho-dur-smooth: 0ms;
+      --ho-dur-slow: 0ms;
+      --ho-dur-slower: 0ms;
+      --ho-dur-ambient: 0ms;
+      --ho-dur-orbital: 0ms;
+      --ho-iridescence-speed: 0s;
+      --ho-sphere-rotation-x: 0;
+      --ho-sphere-rotation-y: 0;
+      --ho-sphere-rotation-z: 0;
+    }
+  }
+  
+  @media (prefers-contrast: high) {
+    :root {
+      --ho-high-contrast: 1;
+      --ho-glass-1: rgba(255, 255, 255, 0.15);
+      --ho-glass-2: rgba(255, 255, 255, 0.25);
+      --ho-glass-3: rgba(255, 255, 255, 0.4);
+      --ho-glass-border-1: rgba(255, 255, 255, 0.4);
+      --ho-glass-border-2: rgba(255, 255, 255, 0.6);
+      --ho-glass-border-3: rgba(255, 255, 255, 0.8);
+      --ho-glass-border-4: rgba(255, 255, 255, 1);
+    }
+  }
+  
+  /* Focus Visible */
+  --ho-focus-ring: 0 0 0 3px rgba(0, 255, 255, 0.6);
+  --ho-focus-ring-inset: inset 0 0 0 2px rgba(0, 255, 255, 0.8);
+}
